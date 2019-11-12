@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.IClientDao">
+    <!-- 添加客户 -->
+    <insert id="addClient">
+      insert into client (name,eid,nextdate,iid,provinceId,areaId,cityId,source,level,sid) values (#{name},#{eid},#{nextdate},#{iid},#{provinceId},#{areaId},#{cityId},#{source},#{level},#{sid})
+    </insert>
+    
+    <!-- 根据id查找 -->
+    <select id="findById" resultType="Client">
+      select * from client where id=#{id}
+    </select>
+    
+    <!-- 根据姓名查找 -->
+    <select id="find1" resultType="Client">
+      select * from client where name like "%"#{name}"%"
+    </select>
+    
+   
+    
+    <!-- 根据员工编号查找 -->
+    <select id="find3" resultType="Client">
+     select * from client where eid=#{eid}
+    </select>
+    
+    <!-- 查询所有 -->
+    <select id="findAll" resultType="Client">
+      select * from client
+    </select>
+    
+    <!-- 根据用户ids数组删除 -->
+    <delete id="delete">
+       delete from client where id in
+       <foreach collection="array" item="ids" open="(" separator="," close=")">
+          #{id}
+       </foreach>
+    </delete>
+    
+    <!-- 更新 -->
+    <update id="update">
+      update client set name=#{name},eid=#{eid},nextdate=#{nextdate},iid=#{iid},provinceId=#{provinceId},areaId=#{areaId},cityId=#{cityId},source=#{source},level=#{level},sid=#{sid} where id=#{id}
+    </update>
+</mapper>

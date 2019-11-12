@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.ILogDao">
+<resultMap type="Log" id="map">
+	<id column="id" property="id" />
+	<result column="did" property="staff.department"/>
+</resultMap>
+<resultMap type="Log" id="map1">
+	<id column="id" property="id" />
+	<result column="rid" property="staff.role"/>
+</resultMap>
+<resultMap type="Log" id="map2">
+	<id column="id" property="id" />
+	<result column="did" property="staff.department"/>
+	<result column="rid" property="staff.role"/>
+</resultMap>
+ <select id="findAll" resultType="Log">
+ 	select * from log ORDER BY DATETIME DESC
+ </select>
+ <select id="findByUid"  resultType="Log">
+ 	select * from log where uid = #{uid} ORDER BY DATETIME DESC
+ </select>
+ <select id="findById" resultType="Log">
+ 	select * from log where id=#{id} ORDER BY DATETIME DESC
+ </select>
+ <insert id="add">
+ 	insert into log(uid,content,datetime) values(#{uid},#{content},#{datetime})
+ </insert>
+ <select id="findByDid" resultMap="map">
+ 	SELECT l.* FROM `log` l JOIN staff s ON l.uid = s.id WHERE s.department = #{did}
+ </select>
+ <select id="findByRid" resultMap="map1">
+ 	SELECT l.* FROM `log` l JOIN staff s ON l.uid = s.id WHERE s.role = #{rid}
+ </select> <select id="finds" resultMap="map2">
+ 	SELECT l.* FROM `log` l JOIN staff s ON l.uid = s.id WHERE s.department = #{did} and s.role = #{rid}
+ </select>
+</mapper>

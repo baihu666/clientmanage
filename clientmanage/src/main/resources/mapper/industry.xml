@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.IIndustryDao">
+   <!-- 根据行业id查找 -->
+   <select id="findById" resultType="Industry">
+      select * from industry where id=#{id}
+   </select>
+   
+   <select id="findAll" resultType="Industry">
+      select * from industry
+   </select>
+</mapper>

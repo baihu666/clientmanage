@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+li {
+	list-style-type: none;
+	line-height: 40px;
+	text-align: center;
+}
+
+button{
+	background-color: cornflowerblue;
+}

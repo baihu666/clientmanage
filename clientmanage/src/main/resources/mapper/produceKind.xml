@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.company.dao.IProduceKindDao">
+	<select id="findList" resultType="ProduceKind">
+		select * from producekind
+	</select>
+	<select id="findById" resultType="ProduceKind">
+		select * from producekind where id=#{id}
+	</select>
+	<insert id="addKind">
+		insert into produceKind (name) value (#{name})
+	</insert>
+	<update id="updateKind">
+		update produceKind set name=#{name} where id=#{id}
+	</update>
+	<delete id="deleteKind">
+		delete from produceKind where id in
+		<foreach collection="array" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+</mapper>

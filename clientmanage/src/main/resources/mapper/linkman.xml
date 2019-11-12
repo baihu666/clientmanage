@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.ILinkManDao">
+	<!-- 添加联系人 -->
+	<insert id="addLinkMan">
+		insert into linkman
+		(name,role,sex,phone,qq,email,cid,remark) values
+		(#{name},#{role},#{sex},#{phone},#{qq},#{email},#{cid},#{remark})
+	</insert>
+
+	<!-- 根据联系人姓名查找对象 -->
+	<select id="find1" resultType="LinkMan">
+		select * from linkman where name like "%"#{name}"%"
+	</select>
+
+	<!-- 根据联系人电话查找对象 -->
+	<select id="find2" resultType="LinkMan">
+		select * from linkman where phone like "%"#{phone}"%"
+	</select>
+
+	<!-- 根据id查找 -->
+	<select id="find3" resultType="LinkMan">
+		select * from linkman where id=#{id}
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="findAll" resultType="LinkMan">
+		select * from linkman
+	</select>
+	
+	<select id="findByCid" resultType="LinkMan">
+		select * from linkman where cid=#{cid}
+	</select>
+	
+	<delete id="delete">
+       delete from linkman where id in
+       <foreach collection="array" item="id" open="(" separator="," close=")">
+          #{id}
+       </foreach>
+    </delete>
+
+	<!-- 更新联系人 -->
+	<update id="update">
+		update linkman set
+		name=#{name},role=#{role},phone=#{phone},qq=#{qq},email=#{email},remark=#{remark}
+		where id=#{id}
+	</update>
+
+</mapper>

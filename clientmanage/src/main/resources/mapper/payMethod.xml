@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.company.dao.IPayMethodDao">
+  
+     <!-- 查询所有付款方式 -->
+  	<select id="findAll" resultType="PayMethod">
+  		select * from paymethod
+  	</select>
+  	
+  	<!-- 根据用户id查询付款方式 -->
+  	<select id="find" resultType="PayMethod">
+  		select * from PayMethod where id=#{id}
+  	</select>
+  </mapper>

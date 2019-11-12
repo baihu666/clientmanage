@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.company.dao.IRecordDao">
+  <select id="selectAll" resultType="Record">
+  select * from Record
+  </select>
+  <select id="selectByCid" resultType="Record">
+  	select * from Record where cid=#{cid}
+  </select>
+   <select id="selectBySid" resultType="Record">
+  	select * from Record where sid=#{sid}
+  </select>
+  <select id="selectByDid" resultType="Record">
+    select * from Record where did=#{did} and point=1 
+  </select>
+  <select id="selectByDid1" resultType="Record">
+    select * from Record where did=#{did} and point !=1
+  </select>
+  <select id="selectByPoint" resultType="Record">
+    select * from Record where point=#{point} 
+    and document=#{document }
+  </select>
+  <select id="selectByOid" resultType="Record">
+    select * from Record where oid=#{oid}
+  </select>
+  <select id="selectByPid" resultType="Record">
+    select * from Record where pid=#{pid}
+  </select>
+  <insert id="insert">
+  INSERT INTO `clientmanage`.`record`
+            (`cid`,`sid`,`did`,`recordtime`,`address`,`result`,`oid`,`doopinion`,`remark`,`document`,`pid`,`point`)
+             VALUES (#{cid},#{sid}, #{did},#{recordtime},#{address},#{result},#{oid},#{doopinion},#{remark},#{document}, #{pid},#{point});
+  </insert>
+  <update id="update">
+  	update record 
+  	<set>
+			<if test="address!=null">address=#{address},</if>
+			<if test="point!=null">point=#{point},</if>
+			<if test="document!=null">document=#{document},</if>
+			<if test="remark!=null">remark=#{remark}</if>
+		</set>
+  	 where id=#{id}
+  </update>
+  <select id="selectOne" resultType="Record">
+  select * from record where id=#{id}
+  </select>
+ 
+  
+  
+  </mapper>

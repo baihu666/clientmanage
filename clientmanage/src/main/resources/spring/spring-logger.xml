@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	
+	<!-- 扫描需要注解的包 -->
+	<context:component-scan base-package="com.company.logger"></context:component-scan>
+	
+	<!-- 完成切面的织入 -->
+	<aop:aspectj-autoproxy />
+	
+	<!-- 操作日志配置 指定扫描aop执行操作的类 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<!-- 配置aop -->
+	<bean id="log" class="com.company.logger.LogBoLogger"></bean>
+	
+	<aop:config>
+		<!-- 定义切入点 -->
+		<aop:pointcut expression="execution(* com.company.controller.StaffController.login(..))" id="p1"/>
+		<aop:pointcut expression="execution(* com.company.controller.StaffController.findAll(..))" id="p2"/>
+		<aop:pointcut expression="execution(* com.company.controller.ClientController.findByName(..))" id="p3"/>
+		<aop:pointcut expression="execution(* com.company.controller.ClientController.findByFid(..))" id="p4"/>
+		<aop:pointcut expression="execution(* com.company.controller.ClientController.findByEid(..))" id="p5"/>
+		<aop:pointcut expression="execution(* com.company.controller.ClientController.delete(..))" id="p6"/>
+		<aop:pointcut expression="execution(* com.company.controller.ClientController.update(..))" id="p7"/>
+		<aop:pointcut expression="execution(* com.company.controller.ClientController.findAll(..))" id="p8"/>
+		<aop:pointcut expression="execution(* com.company.controller.PayDetailController.findByOid(..))" id="p9"/>
+		<aop:pointcut expression="execution(* com.company.controller.PayDetailController.pay(..))" id="p10"/>
+		<aop:pointcut expression="execution(* com.company.controller.RecordController.update(..))" id="p11"/>
+		<!-- 定义增强方法 -->
+		<aop:aspect ref="log">
+			<aop:around method="aroundLogger" pointcut-ref="p1" /> 
+			<aop:around method="aroundLogger" pointcut-ref="p2" />  
+			<aop:around method="aroundLogger" pointcut-ref="p3" /> 
+			<aop:around method="aroundLogger" pointcut-ref="p4" /> 
+			<aop:around method="aroundLogger" pointcut-ref="p5" /> 
+			<aop:around method="aroundLogger" pointcut-ref="p6" /> 
+			<aop:around method="aroundLogger" pointcut-ref="p7" /> 
+			<aop:around method="aroundLogger" pointcut-ref="p8" /> 
+			<aop:around method="aroundLogger" pointcut-ref="p9" /> 
+			<aop:around method="aroundLogger" pointcut-ref="p10" /> 
+			<aop:around method="aroundLogger" pointcut-ref="p11" /> 
+		</aop:aspect>
+	</aop:config>
+	
+</beans>

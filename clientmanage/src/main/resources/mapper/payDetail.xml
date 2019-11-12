@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.IPayDetailDao">
+   <!-- 增加付款细节 -->
+   <insert id="addPayDetail">
+     insert into paydetail (oid,money,status,paytime,schemetime) values (#{oid},#{money},#{status},#{paytime},#{schemetime})
+   </insert>
+   <!-- 根据付款id查找 -->
+   <select id="findById" resultType="PayDetail">
+    select * from paydetail where id=#{id}
+   </select>
+   
+   <!-- 根据订单id获得付款对象 -->
+   <select id="findByOid" resultType="PayDetail">
+    select * from paydetail where oid=#{oid}
+   </select>
+   <!-- 根据付款细节对象，更改对象 -->
+   <update id="update">
+   update paydetail set status="结清", paytime=#{paytime}  where id=#{id}
+   </update>
+</mapper>

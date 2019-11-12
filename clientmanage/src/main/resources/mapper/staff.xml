@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.IStaffDao">
+	<!-- 注册员工 -->
+	<insert id="addStaff">
+		insert into staff
+		(name,registername,password,role,sex,department,provinceId,cityId,areaId,birthday,inputtime)
+		values
+		(#{name},#{registername},#{password},#{role},#{sex},#{department},#{provinceId},#{cityId},#{areaId},#{birthday},#{inputtime})
+	</insert>
+	<!-- 登录 -->
+	<select id="find1" resultType="Staff">
+		select * from staff where
+		registername=#{registername} and password=#{password}
+	</select>
+	<!-- 根据员工id查找员工对象 -->
+	<select id="findById" resultType="Staff">
+		select * from staff where
+		id=#{id}
+	</select>
+	<!-- 查询所有员工 -->
+	<select id="findAll" resultType="Staff">
+		select * from staff
+	</select>
+	<select id="findByCid" resultType="Staff">
+		select * from staff where cid = #{cid}
+	</select>
+	<select id="findBydid" resultType="Staff">
+		select * from staff where department = #{department}
+	</select>
+	<update id="update">
+		update staff set cid = #{cid} where id = #{id}
+	</update>
+</mapper>

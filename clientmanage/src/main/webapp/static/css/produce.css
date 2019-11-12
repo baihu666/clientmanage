@@ -1,0 +1,23 @@
+li{
+	list-style-type:none;
+}
+a{
+	text-decoration:none;
+}
+
+.input-group{
+	margin: 10px auto;
+}
+
+.body{
+	width:1440px;
+	margin:0 auto;
+}
+
+.pull-left{
+	text-align: center;
+}
+
+.pull-right{
+	margin-bottom: 180px;
+}

@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+li {
+	list-style-type: none;
+	line-height: 40px;
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	background-color: darkgrey;
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.company.dao.IOrderDao">
+  
+  	<!-- 查询所有合同 -->
+  	<select id="findAll" resultType="Order">
+  		select * from `order`
+  	</select>
+  	
+  	<!-- 根据订单信息增加合同 -->
+  	<insert id="insert">
+  		insert into `order`(cid,pid,totalprice,status,sid,paymethod) value (#{cid},#{pid},#{totalprice},#{status},#{sid},#{paymethod})
+  	</insert>
+  	
+  	<!-- 根据订单id删除订单合同 -->
+  	<delete id="delete">
+  		delete from `order` where id=#{id}
+  	</delete>
+  	
+  	<!-- 更新订单合同 -->
+  	<update id="update">
+  		update `order` set totalprice=#{totalprice},status=#{status},paymethod=#{paymethod} where id=#{id}
+  	</update>
+  	
+  	<!-- 根据合同编号查询合同 -->
+  	<select id="find" resultType="Order">
+  		select * from `order` where id=#{id}
+  	</select>
+  	
+  	<select id="findByPid" resultType="Order">
+  		select * from `order` where pid=#{pid}
+  	</select>
+  </mapper>

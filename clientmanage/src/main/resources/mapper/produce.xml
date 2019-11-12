@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.company.dao.IProduceDao">
+	<select id="findList" resultType="Produce">
+		select * from produce
+	</select>
+	<select id="findById" resultType="Produce">
+		select * from produce where id=#{id}
+	</select>
+	<select id="findByName" resultType="Produce">
+		select * from produce where name like "%"#{name}"%"
+	</select>
+	<select id="findListByKind" resultType="Produce">
+		select * from produce where kind=#{kind}
+	</select>
+	<select id="findListByStatus" resultType="Produce">
+		select * from produce where statusid=#{statusid}
+	</select>
+	<insert id="addProduce">
+		insert into produce (name,price,kind,`desc`,`count`,statusid) value (#{name},#{price},#{kind},#{desc},#{count},1)
+	</insert>
+	<update id="updateProduce">
+		update produce set name=#{name},price=#{price},kind=#{kind},`desc`=#{desc},`count`=#{count} where id=#{id}
+	</update>
+	<delete id="deleteProduce">
+		delete from produce where id in
+		<foreach collection="array" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	<update id="updateStatus">
+		update produce set statusid=#{statusid} where id=#{id}
+	</update>
+</mapper>

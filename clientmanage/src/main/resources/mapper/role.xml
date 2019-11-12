@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.IRoleDao">
+  <!-- 根据职位id查找职位对象 -->
+  <select id="findById" resultType="Role">
+    select * from role where id=#{id}
+  </select>
+  
+  <select id="findAll" resultType="Role">
+    select * from role 
+  </select>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.ILogBoDao">
+	<insert id="add">
+		INSERT INTO `clientmanage`.`logBo`
+		(`uname`,
+		`module`,
+		`methods`,
+		`content`,
+		`actionurl`,
+		`ip`,
+		`date`,
+		`commite`)
+		VALUES (#{uname},
+		#{module},
+		#{methods},
+		#{content},
+		#{actionurl},
+		#{ip},
+		#{date},
+		#{commite});
+	</insert>
+	<select id="findAll" resultType="LogBo">
+		select * from logBo  ORDER BY DATE DESC
+	</select>
+</mapper>
